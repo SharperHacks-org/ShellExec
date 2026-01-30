@@ -93,8 +93,8 @@
     <None Update="README.md">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="$(ProjectDir)README.md" Pack="true" PackagePath="\" />
-    <None Update="$(ProjectDir)README.md">
+    <None Include="$(SolutionDir)README.md" Pack="true" PackagePath="\" />
+    <None Update="$(SolutionDir)README.md">
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
