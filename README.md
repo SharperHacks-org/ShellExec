@@ -1,8 +1,8 @@
 ![SharperHacks logo](SHLLC-Logo.jpg)
-# Miscellaneous DotNet bits.
-## SharperHacks.CoreLibs.Miscellaneous
+# SharperHacks.CoreLibs.Miscellaneous
+## ShellExec
 
-A collection of miscellaneous orphaned bits of code.
+A shell execution wrapper w/console capture.
 
 Licensed under the Apache License, Version 2.0. See [LICENSE](LICENSE).
 
@@ -10,21 +10,20 @@ Contact: joseph@sharperhacks.org
 
 Project URL: https://github.com/SharperHacks-org/Miscellaneous
 
-Nuget: https://www.nuget.org/packages/SharperHacks.CoreLibs.Miscellaneous
-
-### Deprecated
-As per [issue #1 (Split these projects into separate repos and remove Miscellaneous.)](https://github.com/SharperHacks-org/Miscellaneous/issues/1), this repo will soon be removed.
+Nuget: https://www.nuget.org/packages/SharperHacks.CoreLibs.ShellExec
 
 ### Targets
 - net8.0
 - net9.0
 - net10.0
 
-### Projects
+### Builder's notes
 
-#### DelegateContainers
-Some useful bits for working with delegate types Action and Func.
+* Unit tests depend on [TestDummy](https://github.com/SharperHacks-org/TestDummy),
+  and its dependencies, being on the path or in the execution directory, at runtime.
+
+### Classes
 
 #### ShellExec
-Wrapper class for running separate processes, and capturing their output.
+Thin wrapper class for running separate processes, synchronously, and capturing their output.
 
