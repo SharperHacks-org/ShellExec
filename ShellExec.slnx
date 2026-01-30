@@ -1,0 +1,22 @@
+<Solution>
+  <Configurations>
+    <Platform Name="Any CPU" />
+    <Platform Name="Any CPU 32-bit preferred" />
+    <Platform Name="x64" />
+    <Platform Name="x86" />
+    <Platform Name="ARM" />
+    <Platform Name="ARM64" />
+  </Configurations>
+  <Folder Name="/Solution Items/">
+    <File Path=".editorconfig" />
+    <File Path=".gitignore" />
+    <File Path="build.cmd" />
+    <File Path="checkinTest.cmd" />
+    <File Path="CopyrightChecks.cmd" />
+    <File Path="Directory.Build.Props" />
+    <File Path="LICENSE" />
+    <File Path="README.md" />
+  </Folder>
+  <Project Path="ShellExec/ShellExec.csproj" />
+  <Project Path="ShellExecUT/ShellExecUT.csproj" />
+</Solution>
