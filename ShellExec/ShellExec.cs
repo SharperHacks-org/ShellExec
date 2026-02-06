@@ -2,43 +2,19 @@
 
 using Microsoft.Extensions.Logging;
 
-using SharperHacks.CoreLibs.Constraints;
-
 using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Runtime.CompilerServices;
 
-
+// ToDo: Change this namespace!
 namespace SharperHacks.CoreLibs.Miscellaneous;
 
 // Wrapper class for synchronously running separate processes, and capturing
 // their output.
 //
-public class ShellExec
+public class ShellExec : ShellExecBase
 {
     #region public
-
-    // Get or set the args, if any, to run Cmd with.
-    //
-    public string Args { get; set; }
-
-    // The command to execute.
-    //
-    public string Cmd { get; set; }
-
-    // The ProcessStartInfo used to execute the command.
-    //
-    // Initialized by the constructors. Can be modified before calling
-    // RunSync() or RunAsync().
-    //
-    public ProcessStartInfo ProcessStartInfo { get; set; }
-
-    // The Process object used to execute the command.
-    //
-    // Initialized by the constructors. Can be modified before calling
-    // RunSync() or RunAsync().
-    //
-    public Process Process { get; set; }
 
     // The captured  stdout from the last command execution.
     //
@@ -83,8 +59,10 @@ public class ShellExec
         string? workingDir = null,
         bool useShellExecute = false,
         ILogger? logger = null)
+        : base(cmd, args, workingDir, useShellExecute, logger)
     {
-        Initialize(cmd, args, workingDir ?? string.Empty, useShellExecute, logger);
+        StdOutput = string.Empty;
+        StdError = string.Empty;
     }
 
     // Construct an instance from an initialized ProcessStartInfo object.
@@ -94,20 +72,8 @@ public class ShellExec
     //  @logger An ILogger for trace logging.
     //
     public ShellExec(ProcessStartInfo psi, ILogger? logger = null)
+        : base(psi, logger)
     {
-        _log = logger;
-
-        Verify.IsNotNull(psi);
-
-        Cmd = psi.FileName;
-        Args = psi.Arguments;
-        ProcessStartInfo = psi;
-
-        Process = new Process
-        {
-            StartInfo = ProcessStartInfo
-        };
-
         StdOutput = string.Empty;
         StdError = string.Empty;
     }
@@ -117,56 +83,6 @@ public class ShellExec
     #endregion public
 
     #region private
-
-    private ILogger? _log;
-    private Stopwatch _stopwatch = new();
-
-    [MemberNotNull(
-        nameof(Args),
-        nameof(Cmd),
-        nameof(Process),
-        nameof(ProcessStartInfo),
-        nameof(StdOutput),
-        nameof(StdError)
-    )]
-    private void Initialize(
-        string cmd,
-        string args,
-        string workingDir,
-        bool useShellExecute,
-        ILogger? logger = null)
-    {
-        _log = logger;
-
-        Verify.IsNotNull(cmd);
-        Verify.IsNotNull(args);
-
-        Cmd = cmd;
-        Args = args;
-
-        var psi = new ProcessStartInfo(Cmd, Args)
-        {
-            Arguments = Args,
-            CreateNoWindow = true, // Execute in background (no window).
-            WorkingDirectory = workingDir,
-            FileName = Cmd,
-            RedirectStandardOutput = true, // Capture output.
-            RedirectStandardError = true,
-            RedirectStandardInput = true, // Allow input.
-            UseShellExecute = useShellExecute, // No graphical shell.
-        };
-
-        ProcessStartInfo = psi;
-
-        Process = new Process
-        {
-            StartInfo = ProcessStartInfo
-        };
-
-        StdOutput = string.Empty;
-        StdError = string.Empty;
-    }
-
 
     [SuppressMessage("Usage", "CA2254:Template should be a static expression", Justification = "It only changes if the code is recompiled.")]
     [SuppressMessage("Performance", "CA1848:Use LoggerMessage delegates", Justification = "Performance gain not required")]
