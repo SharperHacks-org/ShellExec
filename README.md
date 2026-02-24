@@ -1,4 +1,5 @@
 ![SharperHacks logo](https://raw.githubusercontent.com/SharperHacks-org/Assets/main/Images/SHLLC-Logo.png)
+# THIS PROJECT HAS MOVED TO [codeberg.org](https://codeberg.org/SharperHacks-org/ShellExec) THIS REPO WILL BE REMOVED.
 # SharperHacks.CoreLibs.Miscellaneous
 ## ShellExec
 
@@ -8,7 +9,7 @@ Licensed under the Apache License, Version 2.0. See [LICENSE](LICENSE).
 
 Contact: joseph@sharperhacks.org
 
-Project URL: https://github.com/SharperHacks-org/Miscellaneous
+Project URL: [https://github.com/SharperHacks-org/Miscellaneous](https://codeberg.org/SharperHacks-org/ShellExec)
 
 Nuget: https://www.nuget.org/packages/SharperHacks.CoreLibs.ShellExec
 
